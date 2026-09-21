@@ -275,10 +275,11 @@ async function ensureDbAdmin() {
     const desiredUsername = ADMIN_USERNAME || admin.username;
     const desiredEmail = ADMIN_EMAIL || admin.email;
     const desiredName = ADMIN_NAME || admin.name;
-    let desiredHash = admin.password_hash;
-    if (ADMIN_PASSWORD && !(await verifyPassword(ADMIN_PASSWORD, admin.password_hash))) {
-      desiredHash = await hashPassword(ADMIN_PASSWORD);
-    }
+
+    // IMPORTANT: ADMIN_PASSWORD is bootstrap-only.
+    // Never overwrite an existing admin password during normal redeploy/startup.
+    // Password changes must happen through the app/reset flow, not deployment.
+    const desiredHash = admin.password_hash;
     try {
       const updated = await pool.query(`
         UPDATE users SET name=$2, username=$3, email=$4, password_hash=$5, role='admin', status='active'
