@@ -304,12 +304,12 @@ const PREVIEW_DEMO = process.env.PREVIEW_DEMO_ITEMS === '1' && !DATABASE_URL &&
 
 function seedPreviewWishlist(userId) {
   const examples = [
-    {title:'Смартфон — новая модель',category:'Техника',price:42990,saved:19800,status:'plan',priority:4,store:'Пример',image:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=700&q=80'},
-    {title:'Ноутбук для работы и творчества',category:'Техника',price:58990,saved:30700,status:'want',priority:3,store:'Пример',image:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=700&q=80'},
-    {title:'Беспроводные наушники',category:'Аксессуары',price:14900,saved:9200,status:'ordered',priority:2,store:'Пример',image:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80'},
-    {title:'Умные часы',category:'Аксессуары',price:23900,saved:6900,status:'want',priority:3,store:'Пример',image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&q=80'},
-    {title:'Камера для путешествий',category:'Техника',price:46000,saved:0,status:'want',priority:1,store:'Пример',image:'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=700&q=80'},
-    {title:'Планшет для рисования',category:'Техника',price:28400,saved:28400,status:'bought',priority:2,store:'Пример',image:'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=700&q=80'}
+    {title:'Смартфон — новая модель',category:'Техника',price:42990,saved:19800,status:'plan',priority:4,store:'Пример',image:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=700&q=80&fm=webp'},
+    {title:'Ноутбук для работы и творчества',category:'Техника',price:58990,saved:30700,status:'want',priority:3,store:'Пример',image:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=700&q=80&fm=webp'},
+    {title:'Беспроводные наушники',category:'Аксессуары',price:14900,saved:9200,status:'ordered',priority:2,store:'Пример',image:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80&fm=webp'},
+    {title:'Умные часы',category:'Аксессуары',price:23900,saved:6900,status:'want',priority:3,store:'Пример',image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&q=80&fm=webp'},
+    {title:'Камера для путешествий',category:'Техника',price:46000,saved:0,status:'want',priority:1,store:'Пример',image:'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=700&q=80&fm=webp'},
+    {title:'Планшет для рисования',category:'Техника',price:28400,saved:28400,status:'bought',priority:2,store:'Пример',image:'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=700&q=80&fm=webp'}
   ];
   const createdAt = new Date().toISOString();
   for (const example of examples) {
