@@ -36,7 +36,7 @@ html[data-theme="dark"] #view-home .purchase-row>.product-thumb{
 }
 .auth-stage{width:100%;display:grid;place-items:center;gap:15px;}
 .auth-card{
-  width:min(460px,100%);padding:37px;border-radius:35px;
+  position:relative;width:min(460px,100%);padding:37px;border-radius:35px;
   background:linear-gradient(145deg,var(--glass-strong),var(--glass));
   box-shadow:0 32px 72px rgba(16,81,61,.13),inset 0 2px 1px rgba(255,255,255,.2);
 }
