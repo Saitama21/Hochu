@@ -12,7 +12,7 @@ function envNumber(name,fallback){const raw=process.env[name];if(raw===undefined
 const { Pool } = pg;
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
-const VERSION = '1.6.0';
+const VERSION = '2.0.0';
 const OPENAI_API_KEY = String(process.env.OPENAI_API_KEY || '').trim();
 const AI_INSPECTOR_MODEL = String(process.env.AI_INSPECTOR_MODEL || 'gpt-5-mini').trim() || 'gpt-5-mini';
 const AI_INSPECTOR_FALLBACK_MODEL = String(process.env.AI_INSPECTOR_FALLBACK_MODEL || 'gpt-5.6-terra').trim() || 'gpt-5.6-terra';
@@ -297,9 +297,32 @@ async function ensureDbAdmin() {
   q=await pool.query(`INSERT INTO users(id,name,username,email,password_hash,role,status) VALUES($1,$2,$3,$4,$5,'admin','active') RETURNING *`,[id,ADMIN_NAME,ADMIN_USERNAME,ADMIN_EMAIL,hash]);
   return q.rows[0];
 }
+// The demo is opt-in and strictly limited to an isolated in-memory preview.
+// A PostgreSQL connection or any normal production account disables seeding.
+const PREVIEW_DEMO = process.env.PREVIEW_DEMO_ITEMS === '1' && !DATABASE_URL &&
+  ADMIN_USERNAME === 'preview' && process.env.RAILWAY_ENVIRONMENT_NAME === 'preview';
+
+function seedPreviewWishlist(userId) {
+  const examples = [
+    {title:'Смартфон — новая модель',category:'Техника',price:42990,saved:19800,status:'plan',priority:4,store:'Пример',image:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=700&q=80'},
+    {title:'Ноутбук для работы и творчества',category:'Техника',price:58990,saved:30700,status:'want',priority:3,store:'Пример',image:'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=700&q=80'},
+    {title:'Беспроводные наушники',category:'Аксессуары',price:14900,saved:9200,status:'ordered',priority:2,store:'Пример',image:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=80'},
+    {title:'Умные часы',category:'Аксессуары',price:23900,saved:6900,status:'want',priority:3,store:'Пример',image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&q=80'},
+    {title:'Камера для путешествий',category:'Техника',price:46000,saved:0,status:'want',priority:1,store:'Пример',image:'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=700&q=80'},
+    {title:'Планшет для рисования',category:'Техника',price:28400,saved:28400,status:'bought',priority:2,store:'Пример',image:'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=700&q=80'}
+  ];
+  const createdAt = new Date().toISOString();
+  for (const example of examples) {
+    const id=crypto.randomUUID();
+    mem.items.push({id,userId,...cleanItem({...example,note:'Демонстрационный товар — только для просмотра дизайна.'}),createdAt,updatedAt:createdAt,purchasedAt:example.status==='bought'?createdAt:null});
+    mem.priceHistory.push({id:crypto.randomUUID(),itemId:id,userId,price:example.price,source:'preview',recordedAt:createdAt});
+  }
+}
 async function ensureMemoryAdmin() {
   if (mem.users.some(u=>u.role==='admin') || !ADMIN_PASSWORD) return;
-  mem.users.push({id:crypto.randomUUID(),name:ADMIN_NAME,username:ADMIN_USERNAME,email:ADMIN_EMAIL,password_hash:await hashPassword(ADMIN_PASSWORD),role:'admin',status:'active',avatar:'',createdAt:new Date().toISOString(),lastLoginAt:null});
+  const id=crypto.randomUUID();
+  mem.users.push({id,name:ADMIN_NAME,username:ADMIN_USERNAME,email:ADMIN_EMAIL,password_hash:await hashPassword(ADMIN_PASSWORD),role:'admin',status:'active',avatar:'',createdAt:new Date().toISOString(),lastLoginAt:null});
+  if (PREVIEW_DEMO) seedPreviewWishlist(id);
 }
 
 async function getSessionUser(req) {
@@ -376,7 +399,7 @@ async function recordPriceHistory(userId,itemId,price,source='manual') {
 app.get('/api/health', async (req,res)=>{
   let database='memory'; if(pool){try{await pool.query('SELECT 1');database='postgresql'}catch{database='error'}}
   let adminReady=Boolean(ADMIN_PASSWORD); if(pool){const q=await pool.query(`SELECT 1 FROM users WHERE role='admin' LIMIT 1`);adminReady=Boolean(q.rowCount)}
-  res.json({ok:true,app:'Хочу',version:VERSION,database,adminReady,aiInspector:await aiStatusSnapshot()});
+  res.json({ok:true,app:'Список желаний',version:VERSION,database,adminReady,previewDemo:PREVIEW_DEMO,aiInspector:await aiStatusSnapshot()});
 });
 app.post('/api/ai-inspector/check', requireAuth, rateLimit('ai-check',3,5*60_000), async (req,res)=>{
   if(!AI_INSPECTOR_ENABLED)return res.status(400).json(await aiStatusSnapshot());
@@ -2492,7 +2515,7 @@ export { parseMakeupReaderMarkdown, parseMakeupSearchHtml, parseMakeupSearchText
 
 if (process.env.HOCHU_TEST !== '1') {
   initDb().then(() => {
-    app.listen(PORT, () => console.log(`Хочу v${VERSION} started on :${PORT}${pool ? ' + PostgreSQL' : ' + memory DB'}`));
+    app.listen(PORT, () => console.log(`Список желаний v${VERSION} started on :${PORT}${pool ? ' + PostgreSQL' : ' + memory DB'}`));
   }).catch(err => {
     console.error('Database initialization failed:', err);
     process.exit(1);
