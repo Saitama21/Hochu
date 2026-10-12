@@ -87,7 +87,7 @@ const state = {
   items: [], view: 'home', homeStatus: 'all', theme: localStorage.getItem('hochu-theme') || 'system',
   me: null, inviteToken: params.get('invite') || '', resetToken: params.get('reset') || '',
   pendingProductImport:capturePendingProductImport(),
-  version:'1.6.0', aiInspector:null, admin: { overview:null, users:[], requests:[], resets:[] }
+  version:'2.0.0', aiInspector:null, admin: { overview:null, users:[], requests:[], resets:[] }
 };
 
 const els = {
@@ -259,7 +259,7 @@ function updateProfile(){
   const u=state.me; if(!u)return;
   els.profileName.textContent=u.name||u.username; setAvatarElement(els.profileAvatar,u); setAvatarElement(els.profileAvatarPreview,u);
   els.profileRole.textContent=u.role==='admin'?'администратор':'личный журнал'; els.nameSetting.value=u.name||''; els.accountSetting.value=`${u.username} · ${u.email}`;
-  if(els.appVersionBadge) els.appVersionBadge.textContent=`v${state.version||'1.6.0'}`; if(els.mobileVersionBadge) els.mobileVersionBadge.textContent=`v${state.version||'1.6.0'}`;
+  if(els.appVersionBadge) els.appVersionBadge.textContent=`v${state.version||'2.0.0'}`; if(els.mobileVersionBadge) els.mobileVersionBadge.textContent=`v${state.version||'2.0.0'}`;
   els.removeAvatar?.classList.toggle('hidden',!safeAvatarData(u.avatar));
   els.adminNavItem.classList.toggle('hidden',u.role!=='admin'); els.adminSettingsCard.classList.toggle('hidden',u.role!=='admin');
 }
@@ -293,6 +293,7 @@ async function boot(){
   if(state.inviteToken) await validateInvite();
   const [me,health] = await Promise.all([fetch('/api/me').then(r=>r.json()).catch(()=>({authenticated:false})),fetch('/api/health').then(r=>r.json()).catch(()=>({}))]);
   updateAiInspectorStatus(health.aiInspector||{});
+  $('previewNotice')?.classList.toggle('hidden',!health.previewDemo);
   state.version=me.version||health.version||state.version; if(els.appVersionBadge)els.appVersionBadge.textContent=`v${state.version}`; if(els.mobileVersionBadge)els.mobileVersionBadge.textContent=`v${state.version}`;
   if(!me.authenticated){ showLogin(); return; }
   state.me=me.user; updateProfile(); showApp(); await loadItems();
@@ -690,7 +691,7 @@ window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updateIns
 if('serviceWorker' in navigator){
   window.addEventListener('load',async()=>{
     try{
-      const reg=await navigator.serviceWorker.register('/sw.js?v=1.6.0',{updateViaCache:'none'});
+      const reg=await navigator.serviceWorker.register('/sw.js?v=2.0.0',{updateViaCache:'none'});
       await reg.update();
     }catch{}
   });
