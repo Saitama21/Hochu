@@ -1,9 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "В Хочу",
-  "description": "Передаёт открытую карточку товара прямо в журнал покупок «Хочу» — без AI для уже видимой цены.",
+  "name": "В желания",
+  "description": "Добавляет открытую карточку товара в «Список желаний» — без AI, когда цена уже видна.",
   "version": "1.1.0",
-  "permissions": ["activeTab", "scripting", "storage"],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
   "background": {
     "service_worker": "background.js"
   },
@@ -14,7 +18,7 @@
     "128": "icon-192.png"
   },
   "action": {
-    "default_title": "Добавить открытую карточку в Хочу",
+    "default_title": "Добавить товар в «Список желаний»",
     "default_icon": "icon-192.png"
   },
   "options_page": "options.html"
