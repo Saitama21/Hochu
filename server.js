@@ -300,7 +300,7 @@ async function ensureDbAdmin() {
 // The demo is opt-in and strictly limited to an isolated in-memory preview.
 // A PostgreSQL connection or any normal production account disables seeding.
 const PREVIEW_DEMO = process.env.PREVIEW_DEMO_ITEMS === '1' && !DATABASE_URL &&
-  ADMIN_USERNAME === 'preview' && process.env.RAILWAY_ENVIRONMENT_NAME === 'preview';
+  ADMIN_USERNAME === 'preview';
 
 function seedPreviewWishlist(userId) {
   const examples = [
