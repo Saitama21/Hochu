@@ -7,14 +7,15 @@
   <meta name="theme-color" content="#101615" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Хочу">
-  <title>Хочу — журнал покупок</title>
+  <meta name="apple-mobile-web-app-title" content="Список желаний">
+  <title>Список желаний — Копи. Планируй. Покупай.</title>
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=1.6.0">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png?v=1.6.0">
   <link rel="icon" type="image/png" sizes="64x64" href="/assets/icons/favicon-64.png?v=1.6.0">
   <link rel="shortcut icon" href="/assets/icons/favicon.ico?v=1.6.0">
   <link rel="stylesheet" href="/styles.css?v=1.6.0">
+  <link rel="stylesheet" href="/home-v2.css?v=2.0.0">
 </head>
 <body>
   <div class="ambient ambient-a"></div>
@@ -25,7 +26,7 @@
       <form id="loginForm" class="auth-card glass" autocomplete="on">
         <img src="/assets/icons/icon-192.png" class="auth-icon" alt="Хочу">
         <div class="kicker">ЛИЧНЫЙ ЖУРНАЛ ПОКУПОК</div>
-        <h1>Хочу</h1>
+        <h1>Список желаний</h1>
         <p>У каждого свой аккаунт и только свой список желаний.</p>
         <label class="field-label">Логин или email</label>
         <input id="loginInput" name="login" type="text" placeholder="ivan или ivan@example.com" autocomplete="username" required>
@@ -46,12 +47,12 @@
     <aside class="sidebar glass">
       <div class="brand-block">
         <img src="/assets/icons/icon-192.png" alt="" class="brand-icon">
-        <div class="brand-copy"><strong>Хочу</strong><span>твои покупки</span><em id="appVersionBadge" class="version-badge">v1.6.0</em></div>
+        <div class="brand-copy"><strong>Список желаний</strong><span>Копи. Планируй. Покупай.</span><em id="appVersionBadge" class="version-badge">v1.6.0</em></div>
       </div>
 
       <nav id="sidebarNav" class="side-nav">
         <button class="nav-item active" data-view="home"><span>⌂</span>Главная</button>
-        <button class="nav-item" data-view="purchases"><span>▣</span>Мои покупки</button>
+        <button class="nav-item" data-view="purchases"><span>▣</span>Мои желания</button>
         <button class="nav-item" data-view="categories"><span>⌘</span>Категории</button>
         <button class="nav-item" data-view="stores"><span>▤</span>Магазины</button>
         <button class="nav-item" data-view="stats"><span>▥</span>Статистика</button>
@@ -69,12 +70,12 @@
     <main class="workspace">
       <header class="topbar glass">
         <div class="top-title">
-          <div class="mobile-brand-version glass-subtle" aria-label="Хочу — версия приложения">
+          <div class="mobile-brand-version glass-subtle" aria-label="Список желаний — версия приложения">
             <img src="/assets/icons/icon-192.png" alt="">
-            <b>Хочу</b><em id="mobileVersionBadge">v1.6.0</em>
+            <b>Список желаний</b><em id="mobileVersionBadge">v1.6.0</em>
           </div>
-          <h2 id="pageTitle">Мои покупки</h2>
-          <span id="pageSubtitle">Желания, на которые ты копишь</span>
+          <h2 id="pageTitle">Список желаний</h2>
+          <span id="pageSubtitle">Копи. Планируй. Покупай.</span>
         </div>
         <div class="top-actions">
           <button id="themeQuick" class="icon-button" title="Сменить тему">◐</button>
@@ -83,22 +84,39 @@
       </header>
 
       <section id="view-home" class="view active">
-        <div class="stats-grid">
-          <article class="stat-card glass"><div class="stat-icon mint">▣</div><div><span>Всего товаров</span><strong id="statCount">0</strong><small id="statActiveText">активных желаний</small></div></article>
-          <article class="stat-card glass"><div class="stat-icon cyan">◒</div><div><span>Накопил</span><strong id="statSaved">0 ₴</strong><small id="statSavedSub">из 0 ₴</small></div></article>
-          <article class="stat-card glass"><div class="stat-icon amber">◷</div><div><span>Заказал</span><strong id="statOrdered">0</strong><small>товара</small></div></article>
-          <article class="stat-card glass"><div class="stat-icon green">✓</div><div><span>Куплено</span><strong id="statBought">0</strong><small>товара</small></div></article>
+        <div class="wish-hero glass" aria-label="Прогресс накоплений">
+          <div class="wish-hero-head">
+            <div>
+              <span class="wish-eyebrow">МОЯ КОЛЛЕКЦИЯ ЦЕЛЕЙ</span>
+              <h3>Большие мечты<br>начинаются с малого.</h3>
+              <p>Твои желания становятся ближе с каждым шагом.</p>
+            </div>
+            <span class="wish-hero-orb" aria-hidden="true"></span>
+          </div>
+          <div class="wish-hero-money">
+            <div><span>Уже накоплено</span><strong id="statSaved">0 ₴</strong></div>
+            <span class="wish-hero-sparkle" aria-hidden="true">✧</span>
+          </div>
+          <div class="wish-hero-track"><div class="overall-progress"><i id="overallBar"></i></div><small id="overallText">Накоплено 0%</small></div>
+          <div class="wish-hero-foot"><span id="statSavedSub">из 0 ₴</span><div>Стоимость целей <b id="totalActive">0 ₴</b></div></div>
         </div>
 
-        <section class="content-panel glass">
+        <div class="stats-grid" aria-label="Мои показатели">
+          <article class="stat-card glass"><div class="stat-icon mint">♡</div><div><span>Желаний</span><strong id="statCount">0</strong><small id="statActiveText">активных желаний</small></div></article>
+          <article class="stat-card glass"><div class="stat-icon cyan">◎</div><div><span>Заказано</span><strong id="statOrdered">0</strong><small>ожидают покупки</small></div></article>
+          <article class="stat-card glass"><div class="stat-icon green">✓</div><div><span>Куплено</span><strong id="statBought">0</strong><small>исполненных желаний</small></div></article>
+        </div>
+
+        <section class="content-panel glass wish-list-panel">
           <div class="panel-head">
             <div>
-              <h3>Мои покупки</h3>
-              <p>Следи за прогрессом накопления</p>
+              <span class="wish-eyebrow">ТВОИ ПЛАНЫ</span>
+              <h3>Мои желания</h3>
+              <p>На что копишь и сколько осталось до цели</p>
             </div>
             <div class="panel-actions">
-              <div class="search-wrap"><span>⌕</span><input id="homeSearch" type="search" placeholder="Поиск по товарам…"></div>
-              <select id="homeSort" class="compact-select">
+              <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="homeSearch" type="search" placeholder="Найти желание…" aria-label="Поиск по желаниям"></div>
+              <select id="homeSort" class="compact-select" aria-label="Сортировка желаний">
                 <option value="recent">Недавно добавленные</option>
                 <option value="priority">По приоритету</option>
                 <option value="priceAsc">Цена ↑</option>
@@ -107,25 +125,19 @@
               </select>
             </div>
           </div>
-          <div class="status-tabs" id="homeTabs">
+          <div class="status-tabs" id="homeTabs" aria-label="Фильтр желаний">
             <button class="tab active" data-status="all">Все</button>
             <button class="tab" data-status="want">Хочу</button>
             <button class="tab" data-status="plan">Планирую</button>
             <button class="tab" data-status="ordered">Заказал</button>
             <button class="tab" data-status="bought">Куплено</button>
           </div>
-          <div id="homeList" class="purchase-list"></div>
+          <div id="homeList" class="purchase-list" aria-live="polite"></div>
           <div id="homeEmpty" class="empty-state hidden">
-            <img src="/assets/icons/icon-192.png" alt="">
-            <h3>Пока здесь пусто</h3>
-            <p>Добавь первую ссылку на вещь, которую хочешь купить.</p>
+            <div class="wish-empty-icon" aria-hidden="true">✧</div>
+            <h3>Твоя коллекция начинается здесь</h3>
+            <p>Добавь ссылку на товар, чтобы следить за ценой и прогрессом накоплений.</p>
             <button class="primary" data-action="add">＋ Добавить желание</button>
-          </div>
-          <div class="total-strip">
-            <span>Общая сумма активных покупок</span>
-            <strong id="totalActive">0 ₴</strong>
-            <div class="overall-progress"><i id="overallBar"></i></div>
-            <small id="overallText">Накоплено 0%</small>
           </div>
         </section>
       </section>
@@ -227,9 +239,9 @@
 
     <nav id="mobileNav" class="mobile-nav glass">
       <button class="mobile-nav-item active" data-view="home"><span>⌂</span><small>Главная</small></button>
-      <button class="mobile-nav-item" data-view="categories"><span>⌘</span><small>Категории</small></button>
-      <button id="mobileAdd" class="mobile-add">＋</button>
-      <button class="mobile-nav-item" data-view="purchases" data-mobile-filter="bought"><span>✓</span><small>Куплено</small></button>
+      <button class="mobile-nav-item" data-view="purchases"><span>♡</span><small>Желания</small></button>
+      <button id="mobileAdd" class="mobile-add" aria-label="Добавить желание">＋</button>
+      <button class="mobile-nav-item" data-view="stats"><span>▥</span><small>Статистика</small></button>
       <button class="mobile-nav-item" data-view="settings"><span>○</span><small>Профиль</small></button>
     </nav>
   </div>
