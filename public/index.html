@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="/styles.css?v=2.0.0">
   <link rel="stylesheet" href="/home-v2.css?v=2.0.0">
   <link rel="stylesheet" href="/liquid-finance-v2.css?v=2.0.0">
+  <link rel="stylesheet" href="/product-pages-v2.css?v=2.0.0">
 </head>
 <body>
   <div class="ambient ambient-a"></div>
@@ -25,10 +26,10 @@
   <section id="loginView" class="auth-view">
     <div class="auth-stage">
       <form id="loginForm" class="auth-card glass" autocomplete="on">
-        <img src="/assets/icons/wishlist-icon.webp?v=2.0.0" class="auth-icon" alt="Хочу">
-        <div class="kicker">ЛИЧНЫЙ ЖУРНАЛ ПОКУПОК</div>
+        <img src="/assets/icons/wishlist-icon.webp?v=2.0.0" class="auth-icon" alt="Список желаний">
+        <div class="kicker">КОПИ · ПЛАНИРУЙ · ПОКУПАЙ</div>
         <h1>Список желаний</h1>
-        <p>У каждого свой аккаунт и только свой список желаний.</p>
+        <p>Желания, накопления и покупки — в одном красивом пространстве.</p>
         <label class="field-label">Логин или email</label>
         <input id="loginInput" name="login" type="text" placeholder="ivan или ivan@example.com" autocomplete="username" required>
         <label class="field-label">Пароль</label>
@@ -147,7 +148,7 @@
       <section id="view-purchases" class="view">
         <section class="content-panel glass full-height-panel">
           <div class="panel-head">
-            <div><h3>Все покупки</h3><p>Полный журнал желаний и покупок</p></div>
+            <div><h3>Мои желания</h3><p>Все твои цели, накопления и уже купленные вещи</p></div>
             <div class="panel-actions"><div class="search-wrap"><span>⌕</span><input id="allSearch" type="search" placeholder="Название, магазин, категория…"></div></div>
           </div>
           <div class="filter-row">
@@ -164,7 +165,7 @@
       </section>
 
       <section id="view-stores" class="view">
-        <div class="hero-strip glass"><div><h3>Магазины</h3><p>Где лежат твои хотелки</p></div><span id="storeCountBadge" class="big-badge">0</span></div>
+        <div class="hero-strip glass"><div><h3>Магазины</h3><p>Товары из твоего списка по магазинам</p></div><span id="storeCountBadge" class="big-badge">0</span></div>
         <div id="storesGrid" class="stores-grid"></div>
       </section>
 
@@ -205,15 +206,15 @@
       <section id="view-settings" class="view">
         <div class="settings-grid">
           <section class="settings-card glass">
-            <h3>Оформление</h3><p>Светлая матовая и тёмная стеклянная темы.</p>
+            <h3>Оформление</h3><p>Премиальное стекло: светлая, тёмная и автоматическая темы.</p>
             <div class="theme-choices">
-              <button class="theme-card" data-theme-choice="light"><span class="theme-preview light-preview"></span><b>Светлая</b><small>матовое стекло</small></button>
-              <button class="theme-card" data-theme-choice="dark"><span class="theme-preview dark-preview"></span><b>Тёмная</b><small>графитовое стекло</small></button>
+              <button class="theme-card" data-theme-choice="light"><span class="theme-preview light-preview"></span><b>Светлая</b><small>жемчужное стекло</small></button>
+              <button class="theme-card" data-theme-choice="dark"><span class="theme-preview dark-preview"></span><b>Тёмная</b><small>изумрудный графит</small></button>
               <button class="theme-card" data-theme-choice="system"><span class="theme-preview system-preview"></span><b>Системная</b><small>как на устройстве</small></button>
             </div>
           </section>
           <section class="settings-card glass profile-settings-card">
-            <h3>Профиль</h3><p>Имя и аватар видны только внутри «Хочу».</p>
+            <h3>Профиль</h3><p>Имя и аватар видны только внутри «Список желаний».</p>
             <div class="avatar-settings">
               <div id="profileAvatarPreview" class="avatar profile-avatar-preview">И</div>
               <div class="avatar-settings-copy"><b>Аватар</b><small>JPG, PNG или WebP. Фото автоматически уменьшается перед загрузкой.</small>
@@ -231,7 +232,7 @@
             <div class="ai-inspector-state"><div class="ai-inspector-copy"><span id="aiInspectorStatus" class="ai-status checking">Проверяю…</span><small id="aiInspectorModel">gpt-5-mini · fallback gpt-5.6-terra</small><small id="aiInspectorDetail">Статус API ещё не проверен.</small></div><button id="checkAiInspector" type="button" class="secondary ai-check-button">Проверить API без токенов</button></div>
           </section>
           <section class="settings-card glass install-settings-card">
-            <div class="install-setting-head"><img src="/assets/icons/wishlist-icon.webp?v=2.0.0" class="install-setting-icon" alt=""><div><h3>Установить «Хочу»</h3><p>Добавь значок на главный экран и запускай журнал как обычное приложение.</p></div></div>
+            <div class="install-setting-head"><img src="/assets/icons/wishlist-icon.webp?v=2.0.0" class="install-setting-icon" alt=""><div><h3>Установить «Список желаний»</h3><p>Добавь значок на главный экран и запускай журнал как обычное приложение.</p></div></div>
             <button id="openInstallGuide" class="secondary">Как установить</button>
           </section>
           <section id="adminSettingsCard" class="settings-card glass hidden"><h3>Администрирование</h3><p>Заявки, пользователи, приглашения и сброс паролей.</p><button id="openAdminSettings" class="secondary">Открыть панель</button></section><section class="settings-card glass danger-zone"><h3>Сессия</h3><p>Выйти из журнала на этом устройстве.</p><button id="logoutButton" class="danger-button">Выйти</button></section>
@@ -250,7 +251,7 @@
 
   <dialog id="editorDialog">
     <form id="editorForm" class="editor glass">
-      <div class="editor-head"><div><span class="kicker">КАРТОЧКА ПОКУПКИ</span><h2 id="editorTitle">Новое желание</h2></div><button id="editorClose" type="button" class="icon-button">×</button></div>
+      <div class="editor-head"><div><span class="kicker">КАРТОЧКА ЖЕЛАНИЯ</span><h2 id="editorTitle">Новое желание</h2></div><button id="editorClose" type="button" class="icon-button">×</button></div>
       <input id="itemId" type="hidden">
       <input id="originalPriceInput" type="hidden"><input id="discountAmountInput" type="hidden"><input id="priceVerificationStatusInput" type="hidden"><input id="priceVerificationSourceInput" type="hidden"><input id="priceCheckedAtInput" type="hidden">
       <div class="editor-layout">
@@ -290,7 +291,7 @@
 
   <dialog id="accessDialog">
     <form id="accessForm" class="auth-modal glass">
-      <div class="editor-head"><div><span class="kicker">ДОСТУП К «ХОЧУ»</span><h2>Заявка на аккаунт</h2></div><button id="accessClose" type="button" class="icon-button">×</button></div>
+      <div class="editor-head"><div><span class="kicker">ДОСТУП К «СПИСОК ЖЕЛАНИЙ»</span><h2>Заявка на аккаунт</h2></div><button id="accessClose" type="button" class="icon-button">×</button></div>
       <div id="accessInviteState" class="invite-state"></div>
       <label>Имя<input id="accessName" required maxlength="80" placeholder="Алексей"></label>
       <div class="grid2"><label>Логин<input id="accessUsername" required maxlength="40" placeholder="alexey"></label><label>Email<input id="accessEmail" type="email" required placeholder="alexey@example.com"></label></div>
@@ -335,7 +336,7 @@
 
   <dialog id="installGuideDialog">
     <div class="auth-modal glass install-guide-modal">
-      <div class="editor-head"><div><span class="kicker">МОБИЛЬНОЕ ПРИЛОЖЕНИЕ</span><h2>Добавить «Хочу» на экран</h2></div><button id="installGuideClose" type="button" class="icon-button">×</button></div>
+      <div class="editor-head"><div><span class="kicker">МОБИЛЬНОЕ ПРИЛОЖЕНИЕ</span><h2>Добавить «Список желаний» на экран</h2></div><button id="installGuideClose" type="button" class="icon-button">×</button></div>
       <div id="installStatus" class="invite-state install-status"><b>Выбери своё устройство</b><span>Покажем короткую инструкцию.</span></div>
       <div class="install-tabs" role="tablist" aria-label="Устройство">
         <button type="button" class="install-tab active" data-install-tab="ios" role="tab"> iPhone / iPad</button>
@@ -343,20 +344,20 @@
       </div>
       <section class="install-panel active" data-install-panel="ios">
         <ol class="install-steps">
-          <li><span class="step-number">1</span><div><b>Открой «Хочу» в Safari</b><p>На iPhone и iPad добавление на экран Домой выполняется через Safari.</p></div></li>
+          <li><span class="step-number">1</span><div><b>Открой «Список желаний» в Safari</b><p>На iPhone и iPad добавление на экран Домой выполняется через Safari.</p></div></li>
           <li><span class="step-number">2</span><div><b>Нажми «Поделиться»</b><p>Кнопка со стрелкой вверх <span class="install-symbol">↥</span> находится в панели Safari.</p></div></li>
           <li><span class="step-number">3</span><div><b>Выбери «На экран Домой»</b><p>Если пункта не видно сразу — прокрути список действий ниже.</p></div></li>
-          <li><span class="step-number">4</span><div><b>Нажми «Добавить»</b><p>На рабочем столе появится фирменная иконка «Хочу».</p></div></li>
-          <li><span class="step-number">5</span><div><b>Запускай как приложение</b><p>Открывай «Хочу» по иконке — интерфейс будет работать без обычной панели браузера.</p></div></li>
+          <li><span class="step-number">4</span><div><b>Нажми «Добавить»</b><p>На рабочем столе появится фирменная иконка «Список желаний».</p></div></li>
+          <li><span class="step-number">5</span><div><b>Запускай как приложение</b><p>Открывай «Список желаний» по иконке — интерфейс будет работать без обычной панели браузера.</p></div></li>
         </ol>
       </section>
       <section class="install-panel" data-install-panel="android">
         <ol class="install-steps">
-          <li><span class="step-number">1</span><div><b>Открой «Хочу» в Chrome</b><p>Войди в свой аккаунт и оставь страницу приложения открытой.</p></div></li>
+          <li><span class="step-number">1</span><div><b>Открой «Список желаний» в Chrome</b><p>Войди в свой аккаунт и оставь страницу приложения открытой.</p></div></li>
           <li><span class="step-number">2</span><div><b>Открой меню Chrome</b><p>Нажми <span class="install-symbol">⋮</span> в правом верхнем углу.</p></div></li>
           <li><span class="step-number">3</span><div><b>Выбери установку</b><p>Нажми «Установить приложение» или «Добавить на главный экран» — название зависит от версии Chrome.</p></div></li>
-          <li><span class="step-number">4</span><div><b>Подтверди</b><p>Нажми «Установить» / «Добавить». Значок «Хочу» появится среди приложений и на главном экране.</p></div></li>
-          <li><span class="step-number">5</span><div><b>Готово</b><p>Теперь «Хочу» запускается отдельным окном, как обычное мобильное приложение.</p></div></li>
+          <li><span class="step-number">4</span><div><b>Подтверди</b><p>Нажми «Установить» / «Добавить». Значок «Список желаний» появится среди приложений и на главном экране.</p></div></li>
+          <li><span class="step-number">5</span><div><b>Готово</b><p>Теперь «Список желаний» запускается отдельным окном, как обычное мобильное приложение.</p></div></li>
         </ol>
       </section>
       <div class="install-guide-actions"><button id="installGuideDone" type="button" class="secondary">Готово</button><button id="installNow" type="button" class="primary hidden">Установить сейчас</button></div>
