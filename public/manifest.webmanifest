@@ -5,8 +5,8 @@
   "id": "/",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f1f6fd",
-  "theme_color": "#328af6",
+  "background_color": "#eaf3f1",
+  "theme_color": "#099c81",
   "share_target": {
     "action": "/share-target",
     "method": "GET",
