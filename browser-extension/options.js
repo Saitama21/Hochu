@@ -27,6 +27,6 @@ save.addEventListener('click', async () => {
   }
   await api.storage.sync.set({ appUrl });
   input.value = appUrl;
-  status.textContent = 'Адрес сохранён ✓ Теперь открой товар и нажми значок «В Хочу».';
+  status.textContent = 'Адрес сохранён ✓ Теперь открой товар и нажми значок «В желания».';
   status.className = 'success';
 });

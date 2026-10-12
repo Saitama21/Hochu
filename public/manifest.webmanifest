@@ -1,12 +1,12 @@
 {
-  "name": "Хочу — журнал покупок",
-  "short_name": "Хочу",
-  "description": "Личный журнал желаний, покупок и накоплений",
+  "name": "Список желаний",
+  "short_name": "Желания",
+  "description": "Список желаний, покупок и накоплений. Копи. Планируй. Покупай.",
   "id": "/",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f5f8f7",
-  "theme_color": "#20b982",
+  "background_color": "#eaf3f1",
+  "theme_color": "#099c81",
   "share_target": {
     "action": "/share-target",
     "method": "GET",

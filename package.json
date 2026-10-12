@@ -1,6 +1,6 @@
 {
   "name": "hochu-wishlist-webapp",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -13,10 +13,13 @@
     "test:parser": "node --test tests/makeup-image-parser.test.mjs",
     "test:price": "node --test tests/price-history.test.mjs tests/price-validator.test.mjs",
     "test:image": "node --test tests/generic-image-ranking.test.mjs",
-    "test": "node --test tests/product-inspector.test.mjs tests/generic-image-ranking.test.mjs tests/current-price.test.mjs tests/touch-live-price.integration.test.mjs tests/avatar-validation.test.mjs tests/price-history.test.mjs tests/price-validator.test.mjs tests/mobile-share-extension.test.mjs",
+    "test": "node --test tests/product-inspector.test.mjs tests/generic-image-ranking.test.mjs tests/current-price.test.mjs tests/touch-live-price.integration.test.mjs tests/avatar-validation.test.mjs tests/price-history.test.mjs tests/price-validator.test.mjs tests/mobile-share-extension.test.mjs tests/home-v2-ui.test.mjs tests/preview-v2.integration.test.mjs tests/full-redesign-v2.test.mjs",
     "test:current-price": "node --test tests/current-price.test.mjs",
     "test:avatar": "node --test tests/avatar-validation.test.mjs",
-    "test:inspector": "node --test tests/product-inspector.test.mjs"
+    "test:inspector": "node --test tests/product-inspector.test.mjs",
+    "test:ui": "node --test tests/home-v2-ui.test.mjs",
+    "test:preview": "node --test tests/preview-v2.integration.test.mjs",
+    "test:design": "node --test tests/full-redesign-v2.test.mjs"
   },
   "dependencies": {
     "cheerio": "^1.0.1",

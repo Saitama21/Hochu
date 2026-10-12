@@ -43,7 +43,7 @@ api.runtime.onInstalled.addListener(async details => {
 api.action.onClicked.addListener(async tab => {
   const appUrl = await configuredAppUrl();
   if (!appUrl) {
-    setBadge('!', '#d97706', 'Сначала укажи адрес приложения «Хочу»');
+    setBadge('!', '#d97706', 'Сначала укажи адрес приложения «Список желаний»');
     if (api.runtime.openOptionsPage) await api.runtime.openOptionsPage();
     return;
   }
@@ -69,7 +69,7 @@ api.action.onClicked.addListener(async tab => {
     const target = new URL(appUrl);
     target.hash = `import=${encodePayload(payload)}`;
     await api.tabs.create({ url: target.href });
-    setBadge(product.price ? '✓' : '?', product.price ? '#059669' : '#d97706', product.price ? `Цена ${product.price} ₴ передана в «Хочу»` : 'Карточка передана без цены');
+    setBadge(product.price ? '✓' : '?', product.price ? '#059669' : '#d97706', product.price ? `Цена ${product.price} ₴ передана в «Список желаний»` : 'Карточка передана без цены');
   } catch (error) {
     setBadge('!', '#dc2626', error?.message || 'Не удалось прочитать карточку');
   }
