@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f5f8f7" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#101615" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#eaf3f1" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#070e0e" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Список желаний">
@@ -25,7 +25,7 @@
   <section id="loginView" class="auth-view">
     <div class="auth-stage">
       <form id="loginForm" class="auth-card glass" autocomplete="on">
-        <img src="/assets/icons/wishlist-icon.webp" class="auth-icon" alt="Хочу">
+        <img src="/assets/icons/wishlist-icon.webp?v=2.0.0" class="auth-icon" alt="Хочу">
         <div class="kicker">ЛИЧНЫЙ ЖУРНАЛ ПОКУПОК</div>
         <h1>Список желаний</h1>
         <p>У каждого свой аккаунт и только свой список желаний.</p>
@@ -47,7 +47,7 @@
   <div id="appShell" class="app-shell hidden">
     <aside class="sidebar glass">
       <div class="brand-block">
-        <img src="/assets/icons/wishlist-icon.webp" alt="" class="brand-icon">
+        <img src="/assets/icons/wishlist-icon.webp?v=2.0.0" alt="" class="brand-icon">
         <div class="brand-copy"><strong>Список желаний</strong><span>Копи. Планируй. Покупай.</span><em id="appVersionBadge" class="version-badge">v2.0.0</em></div>
       </div>
 
@@ -72,7 +72,7 @@
       <header class="topbar glass">
         <div class="top-title">
           <div class="mobile-brand-version glass-subtle" aria-label="Список желаний — версия приложения">
-            <img src="/assets/icons/wishlist-icon.webp" alt="">
+            <img src="/assets/icons/wishlist-icon.webp?v=2.0.0" alt="">
             <b>Список желаний</b><em id="mobileVersionBadge">v2.0.0</em>
           </div>
           <h2 id="pageTitle">Список желаний</h2>
@@ -231,7 +231,7 @@
             <div class="ai-inspector-state"><div class="ai-inspector-copy"><span id="aiInspectorStatus" class="ai-status checking">Проверяю…</span><small id="aiInspectorModel">gpt-5-mini · fallback gpt-5.6-terra</small><small id="aiInspectorDetail">Статус API ещё не проверен.</small></div><button id="checkAiInspector" type="button" class="secondary ai-check-button">Проверить API без токенов</button></div>
           </section>
           <section class="settings-card glass install-settings-card">
-            <div class="install-setting-head"><img src="/assets/icons/wishlist-icon.webp" class="install-setting-icon" alt=""><div><h3>Установить «Хочу»</h3><p>Добавь значок на главный экран и запускай журнал как обычное приложение.</p></div></div>
+            <div class="install-setting-head"><img src="/assets/icons/wishlist-icon.webp?v=2.0.0" class="install-setting-icon" alt=""><div><h3>Установить «Хочу»</h3><p>Добавь значок на главный экран и запускай журнал как обычное приложение.</p></div></div>
             <button id="openInstallGuide" class="secondary">Как установить</button>
           </section>
           <section id="adminSettingsCard" class="settings-card glass hidden"><h3>Администрирование</h3><p>Заявки, пользователи, приглашения и сброс паролей.</p><button id="openAdminSettings" class="secondary">Открыть панель</button></section><section class="settings-card glass danger-zone"><h3>Сессия</h3><p>Выйти из журнала на этом устройстве.</p><button id="logoutButton" class="danger-button">Выйти</button></section>
