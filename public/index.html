@@ -10,12 +10,13 @@
   <meta name="apple-mobile-web-app-title" content="Список желаний">
   <title>Список желаний — Копи. Планируй. Покупай.</title>
   <link rel="manifest" href="/manifest.webmanifest">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=1.6.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png?v=1.6.0">
-  <link rel="icon" type="image/png" sizes="64x64" href="/assets/icons/favicon-64.png?v=1.6.0">
-  <link rel="shortcut icon" href="/assets/icons/favicon.ico?v=1.6.0">
-  <link rel="stylesheet" href="/styles.css?v=1.6.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png?v=2.0.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png?v=2.0.0">
+  <link rel="icon" type="image/png" sizes="64x64" href="/assets/icons/favicon-64.png?v=2.0.0">
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico?v=2.0.0">
+  <link rel="stylesheet" href="/styles.css?v=2.0.0">
   <link rel="stylesheet" href="/home-v2.css?v=2.0.0">
+  <link rel="stylesheet" href="/liquid-finance-v2.css?v=2.0.0">
 </head>
 <body>
   <div class="ambient ambient-a"></div>
@@ -24,7 +25,7 @@
   <section id="loginView" class="auth-view">
     <div class="auth-stage">
       <form id="loginForm" class="auth-card glass" autocomplete="on">
-        <img src="/assets/icons/icon-192.png" class="auth-icon" alt="Хочу">
+        <img src="/assets/icons/wishlist-icon.webp" class="auth-icon" alt="Хочу">
         <div class="kicker">ЛИЧНЫЙ ЖУРНАЛ ПОКУПОК</div>
         <h1>Список желаний</h1>
         <p>У каждого свой аккаунт и только свой список желаний.</p>
@@ -46,8 +47,8 @@
   <div id="appShell" class="app-shell hidden">
     <aside class="sidebar glass">
       <div class="brand-block">
-        <img src="/assets/icons/icon-192.png" alt="" class="brand-icon">
-        <div class="brand-copy"><strong>Список желаний</strong><span>Копи. Планируй. Покупай.</span><em id="appVersionBadge" class="version-badge">v1.6.0</em></div>
+        <img src="/assets/icons/wishlist-icon.webp" alt="" class="brand-icon">
+        <div class="brand-copy"><strong>Список желаний</strong><span>Копи. Планируй. Покупай.</span><em id="appVersionBadge" class="version-badge">v2.0.0</em></div>
       </div>
 
       <nav id="sidebarNav" class="side-nav">
@@ -71,8 +72,8 @@
       <header class="topbar glass">
         <div class="top-title">
           <div class="mobile-brand-version glass-subtle" aria-label="Список желаний — версия приложения">
-            <img src="/assets/icons/icon-192.png" alt="">
-            <b>Список желаний</b><em id="mobileVersionBadge">v1.6.0</em>
+            <img src="/assets/icons/wishlist-icon.webp" alt="">
+            <b>Список желаний</b><em id="mobileVersionBadge">v2.0.0</em>
           </div>
           <h2 id="pageTitle">Список желаний</h2>
           <span id="pageSubtitle">Копи. Планируй. Покупай.</span>
@@ -84,6 +85,7 @@
       </header>
 
       <section id="view-home" class="view active">
+        <div id="previewNotice" class="wish-preview-notice hidden" role="status"><span>✦</span> Тестовый режим: товары и суммы для примера. Это не твой настоящий список покупок.</div>
         <div class="wish-hero glass" aria-label="Прогресс накоплений">
           <div class="wish-hero-head">
             <div>
@@ -229,7 +231,7 @@
             <div class="ai-inspector-state"><div class="ai-inspector-copy"><span id="aiInspectorStatus" class="ai-status checking">Проверяю…</span><small id="aiInspectorModel">gpt-5-mini · fallback gpt-5.6-terra</small><small id="aiInspectorDetail">Статус API ещё не проверен.</small></div><button id="checkAiInspector" type="button" class="secondary ai-check-button">Проверить API без токенов</button></div>
           </section>
           <section class="settings-card glass install-settings-card">
-            <div class="install-setting-head"><img src="/assets/icons/icon-192.png" class="install-setting-icon" alt=""><div><h3>Установить «Хочу»</h3><p>Добавь значок на главный экран и запускай журнал как обычное приложение.</p></div></div>
+            <div class="install-setting-head"><img src="/assets/icons/wishlist-icon.webp" class="install-setting-icon" alt=""><div><h3>Установить «Хочу»</h3><p>Добавь значок на главный экран и запускай журнал как обычное приложение.</p></div></div>
             <button id="openInstallGuide" class="secondary">Как установить</button>
           </section>
           <section id="adminSettingsCard" class="settings-card glass hidden"><h3>Администрирование</h3><p>Заявки, пользователи, приглашения и сброс паролей.</p><button id="openAdminSettings" class="secondary">Открыть панель</button></section><section class="settings-card glass danger-zone"><h3>Сессия</h3><p>Выйти из журнала на этом устройстве.</p><button id="logoutButton" class="danger-button">Выйти</button></section>
@@ -369,6 +371,6 @@
     </div>
   </dialog>
 
-  <script src="/app.js?v=1.6.0"></script>
+  <script src="/app.js?v=2.0.0"></script>
 </body>
 </html>
