@@ -218,7 +218,7 @@ function updateInstallGuideStatus(){
   const platform=installPlatform();
   els.installNow.classList.add('hidden');
   if(isStandaloneApp()){
-    els.installStatus.innerHTML='<b>«Хочу» уже установлено ✓</b><span>Ты открыл приложение с иконки на главном экране.</span>';
+    els.installStatus.innerHTML='<b>«Список желаний» уже установлено ✓</b><span>Ты открыл приложение с иконки на главном экране.</span>';
     return;
   }
   if(platform==='ios'){
@@ -319,7 +319,7 @@ function viewMeta(view){
     home:['Список желаний','Копи. Планируй. Покупай.'],purchases:['Мои желания','Все сохранённые товары и покупки'],
     categories:['Категории','Сгруппировано по типу покупки'],stores:['Магазины','Где лежат твои хотелки'],
     stats:['Статистика','Сколько хочется, сколько накоплено'],admin:['Администрирование','Пользователи, заявки и доступ'],settings:['Настройки','Оформление и профиль']
-  })[view] || ['Хочу','Личный журнал покупок'];
+  })[view] || ['Список желаний','Копи. Планируй. Покупай.'];
 }
 function setView(view){
   state.view=view;
@@ -454,7 +454,7 @@ function resetEditor(){
 }
 function openEditor(id=null){
   resetEditor();
-  if(id){ const x=state.items.find(v=>v.id===id); if(!x)return; els.itemId.value=x.id;els.urlInput.value=x.url||'';els.titleInput.value=x.title||'';els.priceInput.value=x.price||'';els.savedInput.value=x.saved||'';els.categoryInput.value=x.category||'Другое';els.priorityInput.value=String(x.priority||2);els.statusInput.value=x.status||'want';els.storeInput.value=x.store||'';els.variantInput.value=x.variant||'';els.imageInput.value=validImageUrl(x.image||'');els.noteInput.value=x.note||'';setPriceVerification({price:x.price,originalPrice:x.originalPrice,discountAmount:x.discountAmount,priceVerification:{status:x.priceVerificationStatus,source:x.priceVerificationSource,checkedAt:x.priceCheckedAt}});els.deleteItem.classList.remove('hidden');els.editorTitle.textContent='Карточка желания';els.fetchPreview.classList.remove('hidden');els.fetchPreview.textContent='✦ Подтянуть снова';els.fetchMessage.textContent=x.priceVerificationStatus==='VERIFIED'?'Цена сохранена и была подтверждена бесплатной арифметикой. Нажми «Подтянуть снова», чтобы перепроверить сайт.':x.priceVerificationStatus==='BROWSER_DOM'?'Цена была прочитана из открытой вкладки расширением «В Хочу».':'Цена сохранена в «Хочу». Нажми «Подтянуть снова», чтобы перепроверить цену на сайте.';loadPriceHistory(x.id); }
+  if(id){ const x=state.items.find(v=>v.id===id); if(!x)return; els.itemId.value=x.id;els.urlInput.value=x.url||'';els.titleInput.value=x.title||'';els.priceInput.value=x.price||'';els.savedInput.value=x.saved||'';els.categoryInput.value=x.category||'Другое';els.priorityInput.value=String(x.priority||2);els.statusInput.value=x.status||'want';els.storeInput.value=x.store||'';els.variantInput.value=x.variant||'';els.imageInput.value=validImageUrl(x.image||'');els.noteInput.value=x.note||'';setPriceVerification({price:x.price,originalPrice:x.originalPrice,discountAmount:x.discountAmount,priceVerification:{status:x.priceVerificationStatus,source:x.priceVerificationSource,checkedAt:x.priceCheckedAt}});els.deleteItem.classList.remove('hidden');els.editorTitle.textContent='Карточка желания';els.fetchPreview.classList.remove('hidden');els.fetchPreview.textContent='✦ Подтянуть снова';els.fetchMessage.textContent=x.priceVerificationStatus==='VERIFIED'?'Цена сохранена и была подтверждена бесплатной арифметикой. Нажми «Подтянуть снова», чтобы перепроверить сайт.':x.priceVerificationStatus==='BROWSER_DOM'?'Цена была прочитана из открытой вкладки расширением «В желания».':'Цена сохранена в «Список желаний». Нажми «Подтянуть снова», чтобы перепроверить цену на сайте.';loadPriceHistory(x.id); }
   updatePreview(); updateSiteLink(); els.editor.showModal();
 }
 function applyPendingProductImport(){
